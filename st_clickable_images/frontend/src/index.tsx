@@ -27,6 +27,16 @@ function onRender(event: Event): void {
       img.title = data.args["titles"][i]
     }
     img.onclick = function (): void {
+      // Remove the class from all images
+      const allImages = div.getElementsByTagName("img")
+      for (let j = 0; j < allImages.length; j++) {
+        allImages[j].classList.remove("selected")
+      }
+
+      // Add the class to the clicked image
+      this.classList.add("selected")
+
+      // Send the index of the clicked image to Streamlit
       Streamlit.setComponentValue(i)
     }
     // eslint-disable-next-line
